@@ -3,49 +3,33 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa';
 import Spinner from '../components/layout/Spinner';
+import RepoList from '../components/repos/RepoList';
 import { Link } from 'react-router-dom';
 
 const User = () => {
-  const { getUser, user, loading } = useGithubContext();
+  const { getUser, user, loading, getUserRepos, repos } = useGithubContext();
   const params = useParams();
 
   useEffect(() => {
     getUser(params.login);
-  }, [getUser, params.login]);
+    getUserRepos(params.login);
+  }, [getUser, params.login, getUserRepos]);
 
   const {
     avatar_url,
     blog,
     bio,
-    company,
-    created_at,
-    email,
-    events_url,
     followers,
-    followers_url,
     following,
-    following_url,
-    gists_url,
-    gravatar_id,
     hireable,
     html_url,
-    id,
     location,
     login,
     name,
-    node_id,
-    organizations_url,
     public_gists,
     public_repos,
-    received_events_url,
-    repos_url,
-    site_admin,
-    starred_url,
-    subscriptions_url,
     twitter_username,
     type,
-    updated_at,
-    url,
   } = user;
 
   if (loading) {
@@ -169,6 +153,7 @@ const User = () => {
             </div>
           </div>
         </div>
+        <RepoList repos={repos} />
       </div>
     </>
   );

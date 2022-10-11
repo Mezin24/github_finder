@@ -1,5 +1,6 @@
 export const GET_USERS = 'GET_USERS';
 export const GET_USER = 'GET_USER';
+export const GET_USER_REPOS = 'GET_USER_REPO';
 export const SET_LOADING = 'SET_LOADING';
 export const CLEAR_USERS = 'CLEAR_USERS';
 export const SET_ALERT = 'SET_ALERT';
